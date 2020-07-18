@@ -1,0 +1,14 @@
+/*q3 show the the USA highest cutomer total invoice?*/
+
+SELECT
+	customer.FirstName || " " || Customer.LastName AS "Customers",
+	i.BillingCountry,
+	SUM(I.Total) AS total,
+	i.InvoiceId
+FROM Customer
+LEFT JOIN Invoice i
+	ON i.CustomerId = Customer.CustomerId
+WHERE Customer.Country = "USA"
+GROUP BY Customers
+ORDER BY SUM(I.Total) DESC
+

@@ -1,0 +1,14 @@
+
+
+/*q2 what are the top three media type sold overall?*/
+
+SELECT
+	MediaType.Name 'Media',
+	SUM(InvoiceLine.Quantity) AS 'Total sold'
+FROM InvoiceLine
+JOIN Track
+JOIN MediaType
+	WHERE MediaType.MediaTypeId = Track.MediaTypeId
+	AND Track.TrackId = InvoiceLine.TrackId
+GROUP BY MediaType.Name
+ORDER BY SUM(InvoiceLine.Quantity) DESC

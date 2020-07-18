@@ -1,0 +1,14 @@
+
+/*q1 what are the top three types of music in sales?*/
+
+
+SELECT
+	g.Name 'Genre Name',
+	SUM(l.Quantity) AS 'Total in Sales'
+FROM Genre g
+JOIN Track t
+JOIN InvoiceLine l
+	WHERE t.TrackId = l.TrackId
+	AND g.genreid = t.genreid
+GROUP BY g.Name
+ORDER BY SUM(l.Quantity) DESC
